@@ -1,76 +1,84 @@
-let tableFromJson = () => {
+function loadData() {
+    var storedData = localStorage.getItem("dataData");
+    if (storedData) {
+        var data = JSON.parse(storedData);
+        var i = 1;
 
-    const data = [{
-            "Fullname": "Abhisheik Verma",
-            "Age": "25",
-            "Mobile": "9012345678",
-            "Email": "abhi@gmail.com",
-            "City": "Delhi",
-        },
-        {
-            "Fullname": "Babu Annam",
-            "Age": "20",
-            "Mobile": "1012345678",
-            "Email": "babu@gmail.com",
-            "City": "Hyderabad",
-        },
-        {
-            "Fullname": "Chaithra Kumar",
-            "Age": "27",
-            "Mobile": "2012345678",
-            "Email": "chitra@gmail.com",
-            "City": "Banglore",
-        },
-        {
-            "Fullname": "Deepa Verma",
-            "Age": "27",
-            "Mobile": "3012345678",
-            "Email": "deepa@gmail.com",
-            "City": "Chennai",
-        },
-    ];
+        for (let a in data) {
+            var student = data[a];
+            var row = document.createElement("div");
+            row.classList.add("row");
 
-
-    // Extract value from table header.
-
-    let col = [];
-    for (let i = 0; i < data.length; i++) {
-        for (let key in data[i]) {
-            if (col.indexOf(key) === -1) {
-                col.push(key);
+            if (i % 2 == 0) {
+                row.classList.add("even");
+            } else {
+                row.classList.add("odd");
             }
+
+            i = i + 1;
+
+            var cell1 = document.createElement("span");
+            cell1.classList.add("cell");
+            cell1.innerHTML = `${student["firstname"]} ${student["lastname"]}`;
+            row.appendChild(cell1);
+
+            var cell2 = document.createElement("span");
+            cell2.classList.add("cell");
+            cell2.innerHTML = `${student["age"]}`;
+            row.appendChild(cell2);
+
+            var cell3 = document.createElement("span");
+            cell3.classList.add("cell");
+            cell3.innerHTML = `${student["mobile"]}`;
+            row.appendChild(cell3);
+
+            var cell4 = document.createElement("span");
+            cell4.classList.add("cell");
+            cell4.innerHTML = `${a}`;
+            row.appendChild(cell4);
+
+            var cell5 = document.createElement("span");
+            cell5.classList.add("cell");
+            cell5.innerHTML = `${student["city"]}`;
+            row.appendChild(cell5);
+
+            table.appendChild(row);
         }
+    } else {
+
+        var data = {
+            "bayyaramharsha@gmail.com": {
+                "firstname": "Harshath Kumar",
+                "lastname": "Bayyaram",
+                "mobile": "8977801788",
+                "age": 20,
+                "city": "hyderabad"
+            },
+            "kaveri2092k@gmail.com": {
+                "firstname": "Kaveri",
+                "lastname": "Bayyaram",
+                "mobile": "1234567890",
+                "age": 20,
+                "city": "hyderabad"
+            },
+            "ram@gmail.com": {
+                "firstname": "ram",
+                "lastname": "ravi",
+                "mobile": "9100579163",
+                "age": 21,
+                "city": "Hyderabad"
+            },
+            "raj@gmail.com": {
+                "firstname": "raj",
+                "lastname": "Kola",
+                "mobile": "1212421252",
+                "age": 21,
+                "city": "Hyderabad"
+            },
+        };
+
+        localStorage.setItem("dataData", JSON.stringify(data));
     }
+}
 
-    // Create table.
-    const table = document.createElement("table");
-
-    // Create table header row using the extracted headers above.
-    let tr = table.insertRow(-1); // table row.
-
-    for (let i = 0; i < col.length; i++) {
-        let th = document.createElement("th"); // table header.
-        th.innerHTML = col[i];
-        tr.appendChild(th);
-    }
-
-    // add json data to the table as rows.
-    for (let i = 0; i < data.length; i++) {
-        tr = table.insertRow(-1);
-
-        for (let j = 0; j < col.length; j++) {
-            let tabCell = tr.insertCell(-1);
-            tabCell.innerHTML = data[i][col[j]];
-        }
-    }
-
-    // Now, add the newly created table with json data, to a container.
-    const divShowData = document.getElementById("showData");
-    divShowData.innerHTML = "";
-
-    divShowData.appendChild(table);
-};
-
-
-
-window.onload = tableFromJson(); //loads on window loads
+loadData();
