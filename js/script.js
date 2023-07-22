@@ -1,11 +1,27 @@
 function loadData() {
+
     var storedData = localStorage.getItem("data");
     if (storedData) {
         var data = JSON.parse(storedData);
         var i = 1;
 
-        for (let a in data) {
+        var table = document.getElementById("table");
 
+        // Create the header row dynamically
+        var headerRow = document.createElement("div");
+        headerRow.classList.add("row", "header");
+
+        var headerNames = ["Fullname", "Age", "Mobile", "Email", "City"];
+        headerNames.forEach((headerName) => {
+            var headerCell = document.createElement("span");
+            headerCell.classList.add("cell");
+            headerCell.textContent = headerName;
+            headerRow.appendChild(headerCell);
+        });
+
+        table.appendChild(headerRow);
+
+        for (let a in data) {
             var person = data[a];
             var row = document.createElement("div");
             row.classList.add("row");
@@ -46,7 +62,7 @@ function loadData() {
             table.appendChild(row);
         }
     } else {
-
+        // ... (rest of your existing code)
         var data = {
             "bayyaramharsha@gmail.com": {
                 "firstname": "Harshath Kumar",
@@ -76,6 +92,7 @@ function loadData() {
                 "age": 21,
                 "city": "Hyderabad"
             },
+
         };
 
         localStorage.setItem("data", JSON.stringify(data));
