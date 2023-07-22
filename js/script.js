@@ -1,11 +1,12 @@
 function loadData() {
-    var storedData = localStorage.getItem("dataData");
+    var storedData = localStorage.getItem("data");
     if (storedData) {
         var data = JSON.parse(storedData);
         var i = 1;
 
         for (let a in data) {
-            var student = data[a];
+
+            var person = data[a];
             var row = document.createElement("div");
             row.classList.add("row");
 
@@ -19,17 +20,17 @@ function loadData() {
 
             var cell1 = document.createElement("span");
             cell1.classList.add("cell");
-            cell1.innerHTML = `${student["firstname"]} ${student["lastname"]}`;
+            cell1.innerHTML = `${person["firstname"]} ${person["lastname"]}`;
             row.appendChild(cell1);
 
             var cell2 = document.createElement("span");
             cell2.classList.add("cell");
-            cell2.innerHTML = `${student["age"]}`;
+            cell2.innerHTML = `${person["age"]}`;
             row.appendChild(cell2);
 
             var cell3 = document.createElement("span");
             cell3.classList.add("cell");
-            cell3.innerHTML = `${student["mobile"]}`;
+            cell3.innerHTML = `${person["mobile"]}`;
             row.appendChild(cell3);
 
             var cell4 = document.createElement("span");
@@ -39,7 +40,7 @@ function loadData() {
 
             var cell5 = document.createElement("span");
             cell5.classList.add("cell");
-            cell5.innerHTML = `${student["city"]}`;
+            cell5.innerHTML = `${person["city"]}`;
             row.appendChild(cell5);
 
             table.appendChild(row);
@@ -77,7 +78,7 @@ function loadData() {
             },
         };
 
-        localStorage.setItem("dataData", JSON.stringify(data));
+        localStorage.setItem("data", JSON.stringify(data));
     }
 }
 

@@ -8,22 +8,22 @@
     background-color: #CFE2F3;
 }
 
-.cell {
-    display: table-cell;
-    padding: 5px;
-    border: 1px solid #ccc;
-    padding: 2vh;
-}
-
-.container {
-    margin: 200px 200px;
-    text-align: center;
-}
-
 .even {
     background-color: #D9EAD3;
 }
 
 .odd {
     background-color: #FFF2CC;
+}
+
+.cell {
+    display: table-cell;
+    padding: 10px;
+    border: 1px solid #ccc;
+    padding: 2vh;
+}
+
+.container {
+    margin: 100px 100px;
+    text-align: center;
 }
